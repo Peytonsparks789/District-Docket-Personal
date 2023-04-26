@@ -1,0 +1,17 @@
+{
+  "name": "dicket-district",
+  "version": "1.0.0",
+  "description": "A simple calendar application for events to be posted and monitored",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Peyton Sparks",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mongodb": "^5.3.0"
+  }
+}

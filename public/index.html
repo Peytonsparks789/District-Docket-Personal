@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create User</title>
+</head>
+<body>
+<form id="create-user">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br>
+
+    <label for="password">Password:</label>
+    <input type="text" id="password" name="password"><br>
+
+    <label for="first-name">first-name:</label>
+    <input type="text" id="first-name" name="first-name"><br>
+    <label for="last-name">last_name:</label>
+    <input type="text" id="last-name" name="last-name"><br>
+    <label for="email">email:</label>
+    <input type="text" id="email" name="email"><br>
+    <label for="phone">phone:</label>
+    <input type="text" id="phone" name="phone"><br>
+
+    <input type="submit" value="Create User">
+</form>
+
+<script>
+    const form = document.querySelector('#create-user');
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const username = document.querySelector('#username').value;
+        const password = document.querySelector('#password').value;
+        const firstName = document.querySelector('#first-name').value;
+        const lastName = document.querySelector('#last-name').value;
+        const email = document.querySelector('#email').value;
+        const phone = document.querySelector('#phone').value;
+
+        const response = await fetch('/createUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password, firstName, lastName, email, phone })
+        });
+        const result = await response.json();
+        console.log(result);
+    });
+</script>
+</body>
