@@ -56,11 +56,11 @@ async function createContact(db, userId, data) {
 
 let data = {
     first_name: 'John',
-    last_name: 'Frink',
-    email: 'johnf@gmail.com',
+    last_name: 'Doe',
+    email: 'johnd@gmail.com',
     phone: '1234567890'
 }
-createUser("John", "Frink", data)
+createUser("johnd@gmail.com", "Doe", data)
 
 
 /*

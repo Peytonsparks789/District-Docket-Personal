@@ -2,7 +2,7 @@ const { connect, hashPassword } = require('../index');
 
 data = {
     username: 'John',
-    password: 'Frink'
+    password: 'Doe'
 }
 
 async function checkUser(data){
@@ -12,12 +12,17 @@ async function checkUser(data){
 
     const hash = await hashPassword(data.password)
 
-    const query = {
-        username: username,
-        password: hashedPassword
-    };
-    const cursor = await collection.findOne(query);
-    console.log(cursor);
+    try {
+        const query = {
+            username: data.username,
+            password: hash
+        };
+        const cursor = await collection.findOne(query);
+        console.log(cursor);
+    }
+    catch (e){
+        console.log("Could Not Find User", e);
+    }
 
 }
 
