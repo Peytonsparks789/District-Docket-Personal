@@ -1,11 +1,13 @@
-const { connect, disconnect, hashPassword } = require('../index');
+const { connect, disconnect } = require('../conn');
+const { hashPassword } = require('./hash');
+
 const {ObjectId} = require("mongodb");
 
 async function createUser(username, password, data) {
+    // Connect to db and declare db collection
     const db = await connect();
-
-    // Declare db collection
     const collection = db.collection('users');
+
     const document = {
         username: username,
         password: password };

@@ -1,4 +1,4 @@
-import { createUser } from './server/index'
+import { createUser } from './server/crudFunctions/userCreate'
 
 // Get references to the username and password input fields
 const usernameInput = document.querySelector('#username');

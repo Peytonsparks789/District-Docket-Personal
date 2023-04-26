@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const { createUser } = require('./js/server/index');
+const { createUser } = require('./js/server/crudFunctions/userCreate');
 
 // Serve the index.html file
 app.use(express.static('public'));

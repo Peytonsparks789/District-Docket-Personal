@@ -1,27 +1,41 @@
-const { connect, hashPassword } = require('../index');
+const { connect, disconnect} = require('../conn');
+const { compareHash } = require('./hash');
 
 data = {
-    username: 'John',
+    username: 'johnd@gmail.com',
     password: 'Doe'
 }
 
 async function checkUser(data){
-    // Declare db collection
+    // Connect to db and declare db collection
     const db = await connect();
     const collection = db.collection('users');
-
-    const hash = await hashPassword(data.password)
 
     try {
         const query = {
             username: data.username,
-            password: hash
         };
-        const cursor = await collection.findOne(query);
-        console.log(cursor);
-    }
-    catch (e){
-        console.log("Could Not Find User", e);
+        const user = await collection.findOne(query);
+
+        if (!user) {
+            console.log('User not found');
+            return false;
+        }
+
+        const isPasswordMatch = await compareHash(data.password, user.password);
+
+        if (!isPasswordMatch) {
+            console.log('User not found');
+            return false;
+        }
+
+        console.log('User found:', user);
+        return true;
+    } catch (e) {
+        console.log('Could not check user', e);
+        return false;
+    } finally {
+        await disconnect();
     }
 
 }
